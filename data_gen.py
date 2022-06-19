@@ -28,7 +28,7 @@ class DataGenerator:
         """
         
         fixed = cv.imread("./images/Left-GT.png",cv.IMREAD_GRAYSCALE) / 255
-        test = cv.imread("./images/test/CG014_M_L.png",cv.IMREAD_GRAYSCALE) / 255
+        test = cv.imread(f"./images/test/{input_file}",cv.IMREAD_GRAYSCALE) / 255
         
         # preliminary sizing
         vol_shape = fixed.shape # extract data shape

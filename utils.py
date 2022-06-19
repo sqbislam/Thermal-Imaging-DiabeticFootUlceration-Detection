@@ -48,7 +48,7 @@ def draw_patches(image, annotations):
 
     im = np.copy(image * 255)
   
-    
+    fig = plt.figure()
     for idx, z in enumerate(annotations):
       half_patch = BASE_ROI_SIZE * size # pixels = 4x4 patches
       if(idx == 3 or idx == 6):
@@ -86,6 +86,6 @@ def draw_patches(image, annotations):
                         0.4, color, 1, cv2.LINE_AA)
       plt.axis('off')
       plt.imshow(im, cmap="inferno")
-
+    return fig
     
     
