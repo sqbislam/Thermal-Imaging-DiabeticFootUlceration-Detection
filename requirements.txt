@@ -16,7 +16,6 @@ et-xmlfile==1.1.0
 flatbuffers==1.12
 fonttools==4.25.0
 gast==0.4.0
-google-auth-oauthlib==0.4.6
 google-pasta==0.2.0
 gunicorn==20.1.0
 inflection==0.5.1
@@ -24,10 +23,6 @@ keras==2.9.0
 Keras-Preprocessing==1.1.2
 matplotlib==3.5.1
 statsmodels==0.13.2
-tabulate==0.8.9
-tensorboard==2.9.1
-tensorboard-data-server==0.6.1
-tensorboard-plugin-wit==1.8.1
 tensorflow-cpu==2.9.1
 tensorflow-estimator==2.9.0
 tensorflow-io-gcs-filesystem==0.26.0
