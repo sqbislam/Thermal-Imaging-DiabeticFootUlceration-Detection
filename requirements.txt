@@ -11,7 +11,7 @@ comtypes==1.1.10
 constantly==15.1.0
 cssselect==1.1.0
 cytoolz==0.11.0
-datashape==0.5.4
+datashape==0.5.2
 et-xmlfile==1.1.0
 flatbuffers==1.12
 fonttools==4.25.0
