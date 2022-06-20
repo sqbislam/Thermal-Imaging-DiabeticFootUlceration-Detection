@@ -78,7 +78,9 @@
                 data: { selected: the_id },
                 success: function (response) {
                     $("#response").html(response);
+
                     $("#loading").hide();
+                    $("#"+the_id).disable();
                 },
                 error: function (xhr) {
                     //Do Something to handle error
