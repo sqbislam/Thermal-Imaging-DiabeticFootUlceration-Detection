@@ -37089,25 +37089,25 @@
 /***/ })
 /******/ ]);
 //# sourceMappingURL=bundle.js.map </script></head><body>
-        <div class="lime top_div" id="top_div0G4FUY4VLJQZ1N1"></div>
+        <div class="lime top_div" id="top_divRG2YKC9UZ4OFZSR"></div>
         
         <script>
-        var top_div = d3.select('#top_div0G4FUY4VLJQZ1N1').classed('lime top_div', true);
+        var top_div = d3.select('#top_divRG2YKC9UZ4OFZSR').classed('lime top_div', true);
         
             var pp_div = top_div.append('div')
                                 .classed('lime predict_proba', true);
             var pp_svg = pp_div.append('svg').style('width', '100%');
-            var pp = new lime.PredictProba(pp_svg, ["Control", "Diabetes"], [0.008153319358825684, 0.9918466806411743]);
+            var pp = new lime.PredictProba(pp_svg, ["Control", "Diabetes"], [0.018147051334381104, 0.9818529486656189]);
             
         
         var exp_div;
             var exp = new lime.Explanation(["Control", "Diabetes"]);
         
                 exp_div = top_div.append('div').classed('lime explanation', true);
-                exp.show([["contrast-7 <= 0.05", 0.23729763291146697], ["variance-7 <= 0.10", 0.19825199818895142], ["kurtosis-7 > 0.09", 0.1367525180602037], ["mean-2 > 0.65", 0.1259145981140741], ["correlation-7 <= 0.70", -0.1003981440535376], ["contrast-3 <= 0.03", 0.0975620762497933], ["0.32 < mean-7 <= 0.44", -0.06830018445295792], ["0.09 < homogeneity-6 <= 0.23", 0.06167398458884261], ["0.66 < skewness-7 <= 0.73", -0.053433244356815346], ["0.13 < homogeneity-3 <= 0.26", -0.03727835695441595]], 1, exp_div);
+                exp.show([["correlation-7 > 0.87", 0.1622646622736433], ["homogeneity-3 > 0.26", 0.13584850652872593], ["kurtosis-7 <= 0.03", -0.10736937891744995], ["contrast-3 <= 0.03", 0.10257443244529701], ["mean-2 <= 0.31", 0.0775446369817031], ["0.24 < variance-7 <= 0.43", -0.06504932913367908], ["0.09 < homogeneity-6 <= 0.23", 0.061230338934615824], ["0.32 < mean-7 <= 0.44", -0.06008187159849899], ["0.66 < skewness-7 <= 0.73", -0.057283516650052116], ["correlation-3 > 0.86", 0.05284469338169594]], 1, exp_div);
                 
         var raw_div = top_div.append('div');
-            exp.show_raw_tabular([["contrast-7", "0.00", 0.23729763291146697], ["variance-7", "0.00", 0.19825199818895142], ["kurtosis-7", "0.33", 0.1367525180602037], ["mean-2", "0.71", 0.1259145981140741], ["correlation-7", "0.67", -0.1003981440535376], ["contrast-3", "0.03", 0.0975620762497933], ["mean-7", "0.35", -0.06830018445295792], ["homogeneity-6", "0.22", 0.06167398458884261], ["skewness-7", "0.70", -0.053433244356815346], ["homogeneity-3", "0.26", -0.03727835695441595]], 1, raw_div);
+            exp.show_raw_tabular([["correlation-7", "0.92", 0.1622646622736433], ["homogeneity-3", "0.66", 0.13584850652872593], ["kurtosis-7", "0.02", -0.10736937891744995], ["contrast-3", "0.01", 0.10257443244529701], ["mean-2", "0.13", 0.0775446369817031], ["variance-7", "0.27", -0.06504932913367908], ["homogeneity-6", "0.10", 0.061230338934615824], ["mean-7", "0.43", -0.06008187159849899], ["skewness-7", "0.67", -0.057283516650052116], ["correlation-3", "0.98", 0.05284469338169594]], 1, raw_div);
         
         </script>
         </body></html>

@@ -15,8 +15,6 @@ plt.rcParams["figure.autolayout"] = True
 
 import cv2 as cv
 import matplotlib.pyplot as plt
-from io import StringIO
-import base64
 
 # third party imports
 import numpy as np
@@ -37,7 +35,7 @@ import os
 from flask import Flask, render_template,flash, redirect, render_template,request, url_for
 
 app = Flask(__name__)
-
+s
 select_files = os.listdir("./images/test")
 select_options = [{'name': h} for h in select_files]
 selected = None
