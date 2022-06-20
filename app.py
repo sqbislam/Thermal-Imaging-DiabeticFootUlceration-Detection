@@ -160,10 +160,7 @@ def predictplot():
     plt.plot(*[annotations_warped[:, f] for f in [0, 1]], 'o', color="red")
     plt.title("New Image \n (with predicted annotations)")
     
-    output = io.BytesIO()
-    #FigureCanvas(fig).print_png(output)
-   
-    
+
     
     fe = FeatureExtractor()
     feat_df = fe.generate_features(moving, annotations_warped)
