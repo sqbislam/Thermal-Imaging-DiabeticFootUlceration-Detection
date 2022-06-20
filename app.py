@@ -33,17 +33,27 @@ from model import Model
 from joblib import dump, load
 import os
 from flask import Flask, render_template,flash, redirect, render_template,request, url_for
-
+import random
 app = Flask(__name__)
-s
+
+def get_image_label(h):
+    label = "Diabetes"
+    if(h.startswith("CG")):
+        label = "Control"
+    return label
+
 select_files = os.listdir("./images/test")
-select_options = [{'name': h} for h in select_files]
+random.shuffle(select_files)
+select_options = [{'name': h, 'label':get_image_label(h) } for h in select_files]
 selected = None
 @app.route("/", methods=["GET"])
 def hello_world():
     return render_template('index.html', data=select_options)
 
-@app.route("/" , methods=['POST'])
+@app.route("/select-image/<string:filename>" , methods=['GET'])
+def select_image(filename):
+     return render_template('index.html',selected=filename, data=select_options)
+
 def select():
     select = request.form.get('comp_select')
     

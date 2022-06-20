@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DFU Detection - Thermal Imaging</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -16,50 +17,73 @@
     <div class="text-center p-5">
         <h3>Diabetic Foot Ulceration (DFU) Detection from Thermal Imaging</h3>
         <h6>Using image registration to extract features from region of interests and classification made using a trained ML model</h6>
-    
-        <div class="p-4 m-auto">
-            <form class="form-inline" method="POST" action="/" enctype="multipart/form-data">
-                <div class="form-group">
-                    <div class="input-group">
-                        <label class="input-group-addon p-2" for="comp_select" >Please select</label>
-                        <select name="comp_select" class="selectpicker form-control">
-                            {% for o in data %}
-                            {% if selected == o.name%}
-                            <option value="{{ o.name }}" selected>{{ o.name }}</option>
-                            {% else %}
-                            <option value="{{ o.name }}">{{ o.name }}</option>
-                            {% endif %}
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <button id="select-image" type="submit" class="btn btn-primary w-100 mt-3" >Select</button>
-                </div>
-               
-            </form>
-
-            {% if selected %}
         
-            <h6 class="mt-4 p-3 text-center">{{selected}}</h6>
-            <img src="{{url_for('static', filename=selected)}}" />
-            <div class="mt-3">
-                <h6 class="mt-4 p-3 text-center" id="annot" style="display:none;">Predicted ROIs</h6>
-                <img id="annotation" src="{{url_for('annotate', selected=selected)}}" />
+        <div class="container p-4 m-auto">
+            <div class = "row vh-100">
+                <div class="col h-75 overflow-auto">
+                    <h5>Select an Image for prediction</h5>
+                    <form class="form-inline" method="POST" action="/" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <div class="input-group">
+                               
+                                {% for o in data %}
+                                <div class="column">
+                                    {% if selected == o.name%}
+                                    <div class="card mx-1 border-4 border-warning" style="width: 8rem;">
+                                        <img src="{{url_for('static', filename=o.name)}}" class="card-img-top" alt="{{o.name}}">
+                                   
+                                        <div class="card-body">
+                                            <p>Ground Truth <span class="fw-bold">{{o.label}}</span></p>
+                                            <a href="{{url_for('select_image', filename=o.name)}}" class="btn btn-primary">Select</a>
+                                        </div>
+                                    </div>
+                                    {% else %}
+                                    <div class="card mx-1" style="width: 8rem;">
+                                        <img src="{{url_for('static', filename=o.name)}}" class="card-img-top" alt="{{o.name}}">
+                                     
+                                        <div class="card-body">
+                                            <p>Ground Truth <span class="fw-bold">{{o.label}}</span></p>
+                                            <a href="{{url_for('select_image', filename=o.name)}}" class="btn btn-primary">Select</a>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                    
+                                {% endfor %}
+                       
+                            </div>
+                           
+                        </div>
+                    
+                    </form>
+
+                </div>
+                <div class="col">
+                    {% if selected %}
+                    <img src="{{url_for('static', filename=selected)}}" />
+                    <div class="mt-3">
+                        <p class="p-3 text-center" id="annot">Predicting ROIs using learned deformation field</p>
+                        <img id="annotation" src="{{url_for('annotate', selected=selected)}}" />
+                    </div>
+                    <div>
+                        <button type="button" id="{{ selected }}" class="btn btn-info w-100 center"
+                            onclick="$('#loading').show(); $('#annot').show();">Predict</button>
+                    </div>
+                    
+                    <div id="loading" style="display:none;" class="mt-5 w-100">
+                        <button class="btn btn-default" type="button" disabled>
+                            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                            Loading...
+                        </button>
+                    </div>
+                    
+                    <div id='response' class="mt-1 p-2"></div>
+                    {% endif %}
+
+                </div>
+                  
             </div>
-            <div>
-                <button type="button" id="{{ selected }}" class="btn btn-info w-100 center"
-                    onclick="$('#loading').show(); $('#annot').show();">Predict</button>
-            </div>
-          
-            <div id="loading" style="display:none;" class="mt-3">
-                <button class="btn btn-default" type="button" disabled>
-                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-                Loading...
-            </button></div>
-                
-            <div id='response' class="mt-4 p-4"></div>
-            {% endif %}
-            
-            
+       
        
         </div>
     </div>
@@ -81,6 +105,9 @@
 
                     $("#loading").hide();
                     $("#"+the_id).disable();
+                    $([document.documentElement, document.body]).animate({
+                        scrollTop: $("#response").offset().top
+                    }, 2000);
                 },
                 error: function (xhr) {
                     //Do Something to handle error

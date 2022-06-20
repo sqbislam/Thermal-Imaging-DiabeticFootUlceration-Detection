@@ -8,4 +8,10 @@ statsmodels==0.13.2
 tensorflow-cpu==2.9.1
 voxelmorph==0.2
 xgboost==0.90
-Flask==1.1.2
+Flask==2.0.2
+Jinja2==3.0.2
+click==7.1.2
+joblib==0.17.0
+gunicorn==20.1.0
+opencv-python==4.6.0.66
+lime==0.2.0.1

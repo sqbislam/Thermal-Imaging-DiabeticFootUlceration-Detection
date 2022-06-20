@@ -103,7 +103,7 @@ class Model:
             predict_fn=clf.predict_proba
         )
     
-        exp.save_to_file('./feat-importance-a.htm', show_table=True, show_all=False)
+        #exp.save_to_file('./feat-importance-a.htm', show_table=True, show_all=False)
         return exp.as_html(show_table=True, show_all=False)
         
         
